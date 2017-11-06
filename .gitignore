@@ -1,0 +1,5 @@
+.DS_Store
+Podfile.lock
+Pods/*
+nmpcd.xcodeproj/xcuserdata/*
+nmpcd.xcworkspace/xuserdata/*
