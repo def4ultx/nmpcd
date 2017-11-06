@@ -9,5 +9,3 @@ target 'nmpcd' do
     pod 'ImageSlideshow', '~> 1.4'
     use_frameworks!
 end
-
-
