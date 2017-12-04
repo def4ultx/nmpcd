@@ -7,5 +7,6 @@ target 'nmpcd' do
     pod 'Alamofire', '~>4.5'
     pod 'SwiftyJSON'
     pod 'ImageSlideshow', '~> 1.4'
+    pod 'Firebase/Core'
     use_frameworks!
 end
