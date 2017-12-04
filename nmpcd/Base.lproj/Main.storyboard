@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="veS-VU-qPe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="veS-VU-qPe">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -142,20 +142,67 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gjQ-K4-h9f">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="179" height="180"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell" id="iAX-Jm-FAG">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell" id="iAX-Jm-FAG" customClass="AnnotatedPhotoCell" customModule="nmpcd" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T2L-48-X4c">
+                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0jZ-nG-cSG">
+                                                            <rect key="frame" x="0.0" y="0.0" width="180" height="124"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9UW-aY-YvQ">
+                                                            <rect key="frame" x="4" y="134" width="172" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yuB-E5-KZ9">
+                                                            <rect key="frame" x="4" y="154" width="172" height="16"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="0jZ-nG-cSG" secondAttribute="trailing" id="2nK-Ml-T5Y"/>
+                                                        <constraint firstItem="yuB-E5-KZ9" firstAttribute="leading" secondItem="T2L-48-X4c" secondAttribute="leading" constant="4" id="5fe-QI-RBa"/>
+                                                        <constraint firstAttribute="trailing" secondItem="yuB-E5-KZ9" secondAttribute="trailing" constant="4" id="CKY-N7-UtW"/>
+                                                        <constraint firstItem="yuB-E5-KZ9" firstAttribute="top" secondItem="9UW-aY-YvQ" secondAttribute="bottom" constant="2" id="Kg8-xw-xSP"/>
+                                                        <constraint firstItem="0jZ-nG-cSG" firstAttribute="top" secondItem="T2L-48-X4c" secondAttribute="top" id="Nio-Cz-QZg"/>
+                                                        <constraint firstItem="0jZ-nG-cSG" firstAttribute="leading" secondItem="T2L-48-X4c" secondAttribute="leading" id="S8J-3t-0GM"/>
+                                                        <constraint firstAttribute="bottom" secondItem="yuB-E5-KZ9" secondAttribute="bottom" constant="10" id="UZp-gD-jEA"/>
+                                                        <constraint firstItem="9UW-aY-YvQ" firstAttribute="leading" secondItem="T2L-48-X4c" secondAttribute="leading" constant="4" id="b7g-mw-fXM"/>
+                                                        <constraint firstItem="yuB-E5-KZ9" firstAttribute="top" secondItem="9UW-aY-YvQ" secondAttribute="bottom" constant="2" id="nil-e5-Toy"/>
+                                                        <constraint firstAttribute="trailing" secondItem="9UW-aY-YvQ" secondAttribute="trailing" constant="4" id="uU5-6G-GOp"/>
+                                                        <constraint firstItem="9UW-aY-YvQ" firstAttribute="top" secondItem="0jZ-nG-cSG" secondAttribute="bottom" constant="10" id="wVX-am-M6J"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="T2L-48-X4c" firstAttribute="leading" secondItem="iAX-Jm-FAG" secondAttribute="leading" id="0Se-eL-ams"/>
+                                            <constraint firstItem="T2L-48-X4c" firstAttribute="top" secondItem="iAX-Jm-FAG" secondAttribute="top" id="3ZD-hW-Uvk"/>
+                                            <constraint firstAttribute="trailing" secondItem="T2L-48-X4c" secondAttribute="trailing" id="S1n-1E-vgw"/>
+                                            <constraint firstAttribute="bottom" secondItem="T2L-48-X4c" secondAttribute="bottom" id="lta-Xj-pCD"/>
+                                        </constraints>
+                                        <size key="customSize" width="180" height="180"/>
                                         <connections>
+                                            <outlet property="containerView" destination="T2L-48-X4c" id="JqZ-BG-M0x"/>
+                                            <outlet property="drugDetailLabel" destination="yuB-E5-KZ9" id="ReW-3h-CLP"/>
+                                            <outlet property="drugNameLabel" destination="9UW-aY-YvQ" id="CVe-lb-JG5"/>
+                                            <outlet property="imageView" destination="0jZ-nG-cSG" id="Jis-yd-zUG"/>
                                             <segue destination="9e3-gf-htK" kind="show" id="I9e-uK-soh"/>
                                         </connections>
                                     </collectionViewCell>
@@ -179,7 +226,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="751-6V-qQk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1620" y="99"/>
+            <point key="canvasLocation" x="1620" y="98.50074962518741"/>
         </scene>
         <!--Title-->
         <scene sceneID="s0K-Of-zRy">
