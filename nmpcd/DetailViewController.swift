@@ -12,7 +12,7 @@ import ImageSlideshow
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var slideShow: ImageSlideshow!
-    let localSource = [ImageSource(imageString: "4")!, ImageSource(imageString: "2")!, ImageSource(imageString: "3")!]
+    let localSource = [ImageSource(imageString: "nmpcd")!, ImageSource(imageString: "nmpcd")!]
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
