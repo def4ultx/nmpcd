@@ -19,6 +19,7 @@
 		29DC23121FD465A7002F1CB5 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC23111FD465A7002F1CB5 /* AccountViewController.swift */; };
 		29DC23141FD465B2002F1CB5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC23131FD465B2002F1CB5 /* LoginViewController.swift */; };
 		3828F9064ABA4C23629CBC0C /* Pods_nmpcd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE2AC2A50357F451D495CFC /* Pods_nmpcd.framework */; };
+		654D6BB51FD6D4C600BB964F /* AnnotatedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654D6BB41FD6D4C600BB964F /* AnnotatedPhotoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		29DC23111FD465A7002F1CB5 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		29DC23131FD465B2002F1CB5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5CE2AC2A50357F451D495CFC /* Pods_nmpcd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nmpcd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		654D6BB41FD6D4C600BB964F /* AnnotatedPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotatedPhotoCell.swift; sourceTree = "<group>"; };
 		9648A608DE60094E6BAC0168 /* Pods-nmpcd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nmpcd.release.xcconfig"; path = "Pods/Target Support Files/Pods-nmpcd/Pods-nmpcd.release.xcconfig"; sourceTree = "<group>"; };
 		C62AAD4B3794FA14EA0A06AF /* Pods-nmpcd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nmpcd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nmpcd/Pods-nmpcd.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				294CC08B1FD6648E0051BD3D /* Medicine.swift */,
+				654D6BB41FD6D4C600BB964F /* AnnotatedPhotoCell.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				294CC08C1FD6648E0051BD3D /* Medicine.swift in Sources */,
 				29DC23141FD465B2002F1CB5 /* LoginViewController.swift in Sources */,
 				29DC230C1FD3E8F5002F1CB5 /* SearchViewController.swift in Sources */,
+				654D6BB51FD6D4C600BB964F /* AnnotatedPhotoCell.swift in Sources */,
 				29DC23121FD465A7002F1CB5 /* AccountViewController.swift in Sources */,
 				29C6E65C1FB0E30100EA8E9E /* AppDelegate.swift in Sources */,
 				29DC23081FD3E8B1002F1CB5 /* DetailViewController.swift in Sources */,

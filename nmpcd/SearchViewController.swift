@@ -11,6 +11,9 @@ import BarcodeScanner
 
 class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
+    var photos = ["1","2","3","4","5"]
+    //["tylenol-8hour","tylenol-500ml-100pcs","tylenol-500ml-200pcs","tylenol-childrens","tylenol-infants-5ml"]
+    
     var searchText: String!
     private var medData = [Medicine]()
     private let barcodeController = BarcodeScannerController()
@@ -24,6 +27,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.barcodeController.codeDelegate = self
         self.barcodeController.errorDelegate = self
         self.barcodeController.dismissalDelegate = self
+        
+        //collectionView.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,13 +48,21 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return medData.count
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnnotatedPhotoCell", for: indexPath) as! AnnotatedPhotoCell
+        cell.imageView.image = UIImage(named: photos[indexPath.item])
+        cell.medNameLabel.text = photos[indexPath.item]
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 2
+        return CGSize(width: itemSize, height: itemSize)
+    }
+    
     
     private func loadSearchData() {
         
@@ -83,3 +96,5 @@ extension SearchViewController: BarcodeScannerDismissalDelegate {
         controller.dismiss(animated: true, completion: nil)
     }
 }
+
+
