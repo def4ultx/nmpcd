@@ -13,9 +13,34 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    var recentSearch = ["Paracetamol","Vitamin C","Vitamin E"]
+    private var recentSearch = ["Paracetamol","Vitamin C","Vitamin E"]
+    private let barcodeController = BarcodeScannerController()
     
-    private let controller = BarcodeScannerController()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedAround()
+        self.tableView.tableFooterView = UIView()
+        self.barcodeController.codeDelegate = self
+        self.barcodeController.errorDelegate = self
+        self.barcodeController.dismissalDelegate = self
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func clearRecentMethod(_ sender: Any) {
+        self.recentSearch.removeAll()
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func scanBarcodeMethod(_ sender: Any) {
+        barcodeController.title = "Barcode Scanner"
+        present(barcodeController, animated: true, completion: nil)
+        
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recentSearch.count
@@ -50,32 +75,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.hideKeyboardWhenTappedAround()
-        self.tableView.tableFooterView = UIView()
-        
-        
-        controller.codeDelegate = self as? BarcodeScannerCodeDelegate
-        controller.errorDelegate = self as? BarcodeScannerErrorDelegate
-        controller.dismissalDelegate = self as? BarcodeScannerDismissalDelegate
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func clearRecentMethod(_ sender: Any) {
-        self.recentSearch.removeAll()
-        self.tableView.reloadData()
-    }
-    
-    @IBAction func scanBarcodeMethod(_ sender: Any) {
-        navigationController?.pushViewController(controller, animated: true)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "searchSegue" {
             var searchText: String!
@@ -100,5 +99,32 @@ extension UIViewController {
     }
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+}
+
+extension MainViewController: BarcodeScannerCodeDelegate {
+    
+    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
+        print("Barcode Data: \(code)")
+        print("Symbology Type: \(type)")
+        
+        let delayTime = DispatchTime.now() + Double(Int64(6 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
+            controller.resetWithError()
+        }
+    }
+}
+
+extension MainViewController: BarcodeScannerErrorDelegate {
+    
+    func barcodeScanner(_ controller: BarcodeScannerController, didReceiveError error: Error) {
+        print(error)
+    }
+}
+
+extension MainViewController: BarcodeScannerDismissalDelegate {
+    
+    func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

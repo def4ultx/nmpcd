@@ -7,26 +7,23 @@
 //
 
 import UIKit
+import BarcodeScanner
 
-class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
     var searchText: String!
-    var medData = [Medicine]()
+    private var medData = [Medicine]()
+    private let barcodeController = BarcodeScannerController()
     @IBOutlet weak var searchBar: UISearchBar!
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return medData.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath)
-        return cell
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.navigationItem.title = searchText
         self.hideKeyboardWhenTappedAround()
+        self.barcodeController.codeDelegate = self
+        self.barcodeController.errorDelegate = self
+        self.barcodeController.dismissalDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,19 +32,54 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     @IBAction func scanBarcodeMethod(_ sender: Any) {
+        barcodeController.title = "Barcode Scanner"
+        present(barcodeController, animated: true, completion: nil)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if searchBar.text != nil {
+            print("request data")
+        }
     }
-    */
-
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return medData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath)
+        return cell
+    }
+    
     private func loadSearchData() {
         
+    }
+}
+
+
+extension SearchViewController: BarcodeScannerCodeDelegate {
+    
+    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
+        print("Barcode Data: \(code)")
+        print("Symbology Type: \(type)")
+        
+        let delayTime = DispatchTime.now() + Double(Int64(6 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
+            controller.resetWithError()
+        }
+    }
+}
+
+extension SearchViewController: BarcodeScannerErrorDelegate {
+    
+    func barcodeScanner(_ controller: BarcodeScannerController, didReceiveError error: Error) {
+        print(error)
+    }
+}
+
+extension SearchViewController: BarcodeScannerDismissalDelegate {
+    
+    func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
