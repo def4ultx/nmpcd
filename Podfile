@@ -6,7 +6,7 @@ target 'nmpcd' do
     # Pods for nmpcd
     #pod 'Alamofire', '~>4.5'
     #pod 'SwiftyJSON'
-    #pod 'ImageSlideshow', '~> 1.4'
+    pod 'ImageSlideshow', '~> 1.4'
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
     pod 'GoogleSignIn'

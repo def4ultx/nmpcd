@@ -8,15 +8,19 @@
 
 import Foundation
 class Medicine {
-    var Barcode: String!
-    var Usage: String!
-    var Name: String!
+    var medStrenght: Int!
+    var medName: String!
+    var medUses: String!
+    var medUnit: String!
+    var medStorage: String!
+    var medDosageForm: String!
+    var medPrecaution: String!
+    var medAdministration: String!
+    var barcodeNo: String!
+    var genericName: String!
     init?(barcode: String?, usage: String?, name: String?) {
         if (barcode!.isEmpty || usage!.isEmpty || name!.isEmpty) {
             return nil
         }
-        self.Barcode = barcode!
-        self.Usage = usage!
-        self.Name = name!
     }
 }
