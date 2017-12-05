@@ -11,10 +11,10 @@ import UIKit
 class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var searchText: String!
-    var drugData: NSDictionary!
+    var medData = [Medicine]()
     @IBOutlet weak var searchBar: UISearchBar!
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return drugData.count
+        return medData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -34,7 +34,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func scanBarcodeMethod(_ sender: Any) {
+    }
+    
     /*
     // MARK: - Navigation
 

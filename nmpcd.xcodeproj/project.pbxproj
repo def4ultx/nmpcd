@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		294CC08C1FD6648E0051BD3D /* Medicine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294CC08B1FD6648E0051BD3D /* Medicine.swift */; };
 		29C6E65C1FB0E30100EA8E9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6E65B1FB0E30100EA8E9E /* AppDelegate.swift */; };
 		29C6E6611FB0E30200EA8E9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C6E65F1FB0E30200EA8E9E /* Main.storyboard */; };
 		29C6E6631FB0E30200EA8E9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C6E6621FB0E30200EA8E9E /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		294CC08B1FD6648E0051BD3D /* Medicine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicine.swift; sourceTree = "<group>"; };
 		29C6E6581FB0E30100EA8E9E /* nmpcd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nmpcd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C6E65B1FB0E30100EA8E9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29C6E6601FB0E30200EA8E9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 		29DC22F81FD3B601002F1CB5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				294CC08B1FD6648E0051BD3D /* Medicine.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-nmpcd/Pods-nmpcd-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BarcodeScanner/BarcodeScanner.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -265,6 +269,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BarcodeScanner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -282,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				294CC08C1FD6648E0051BD3D /* Medicine.swift in Sources */,
 				29DC23141FD465B2002F1CB5 /* LoginViewController.swift in Sources */,
 				29DC230C1FD3E8F5002F1CB5 /* SearchViewController.swift in Sources */,
 				29DC23121FD465A7002F1CB5 /* AccountViewController.swift in Sources */,

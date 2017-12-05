@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import BarcodeScanner
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     var recentSearch = ["Paracetamol","Vitamin C","Vitamin E"]
+    
+    private let controller = BarcodeScannerController()
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recentSearch.count
     }
@@ -51,6 +55,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Do any additional setup after loading the view.
         self.hideKeyboardWhenTappedAround()
         self.tableView.tableFooterView = UIView()
+        
+        
+        controller.codeDelegate = self as? BarcodeScannerCodeDelegate
+        controller.errorDelegate = self as? BarcodeScannerErrorDelegate
+        controller.dismissalDelegate = self as? BarcodeScannerDismissalDelegate
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,6 +70,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func clearRecentMethod(_ sender: Any) {
         self.recentSearch.removeAll()
         self.tableView.reloadData()
+    }
+    
+    @IBAction func scanBarcodeMethod(_ sender: Any) {
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

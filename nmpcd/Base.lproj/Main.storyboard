@@ -67,10 +67,14 @@
                                     <action selector="clearRecentMethod:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AqP-l3-E8u"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="barcode" translatesAutoresizingMaskIntoConstraints="NO" id="O7v-ag-1UO">
-                                <rect key="frame" x="311" y="119" width="56" height="56"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4GA-TD-s0Z">
+                                <rect key="frame" x="307" y="115" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <state key="normal" image="barcode"/>
+                                <connections>
+                                    <action selector="scanBarcodeMethod:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qbd-gO-Au8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -82,43 +86,12 @@
                         <outlet property="searchBar" destination="FRa-Hb-YWn" id="6fw-2b-ktu"/>
                         <outlet property="tableView" destination="Zqr-sX-HlM" id="lbP-LX-6Vz"/>
                         <segue destination="xtU-FJ-2NW" kind="show" identifier="searchSegue" id="G2m-9U-nNx"/>
-                        <segue destination="LC8-xa-hYh" kind="presentation" id="03S-Az-rwO"/>
-                        <segue destination="xlu-mg-quH" kind="presentation" id="TBV-Wj-sFD"/>
+                        <segue destination="9e3-gf-htK" kind="show" identifier="detailSegue" id="erU-xo-DRH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="815.20000000000005" y="98.50074962518741"/>
-        </scene>
-        <!--Account View Controller-->
-        <scene sceneID="x0q-lV-WFI">
-            <objects>
-                <viewController id="LC8-xa-hYh" customClass="AccountViewController" customModule="nmpcd" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JPr-YP-ceR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="yIZ-5l-N5o"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9an-mX-OBC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="815" y="949"/>
-        </scene>
-        <!--Login View Controller-->
-        <scene sceneID="7eu-Gz-Abt">
-            <objects>
-                <viewController id="xlu-mg-quH" customClass="LoginViewController" customModule="nmpcd" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hwx-4T-5YO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="2gG-rW-lbz"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zw7-Rq-BJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1620" y="949"/>
         </scene>
         <!--Title-->
         <scene sceneID="z3V-4I-BzB">
@@ -133,10 +106,6 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="barcode" translatesAutoresizingMaskIntoConstraints="NO" id="kPa-ts-JP9">
-                                <rect key="frame" x="311" y="64" width="56" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gH8-QZ-XOd">
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -156,7 +125,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
                                         <connections>
-                                            <segue destination="9e3-gf-htK" kind="show" id="I9e-uK-soh"/>
+                                            <segue destination="9e3-gf-htK" kind="show" identifier="detailSegue" id="I9e-uK-soh"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -165,6 +134,14 @@
                                     <outlet property="delegate" destination="xtU-FJ-2NW" id="9yG-eG-c5s"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21x-6R-lb9">
+                                <rect key="frame" x="311" y="64" width="56" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="barcode"/>
+                                <connections>
+                                    <action selector="scanBarcodeMethod:" destination="xtU-FJ-2NW" eventType="touchUpInside" id="Yfc-xf-deh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="byJ-cT-nb7"/>
@@ -188,6 +165,19 @@
                     <view key="view" contentMode="scaleToFill" id="L3E-nH-h4n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zr1-Ew-gL6">
+                                <rect key="frame" x="16" y="244" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nmpcd" translatesAutoresizingMaskIntoConstraints="NO" id="qaX-EO-81X">
+                                <rect key="frame" x="67" y="108" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="KGg-VC-60s"/>
                     </view>
@@ -197,7 +187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MCp-2v-qaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2570" y="99"/>
+            <point key="canvasLocation" x="1212" y="887"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rB9-tH-PaB">
@@ -219,6 +209,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="barcode" width="64" height="64"/>
+        <image name="barcode" width="256" height="256"/>
+        <image name="nmpcd" width="400" height="205"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="erU-xo-DRH"/>
+    </inferredMetricsTieBreakers>
 </document>
