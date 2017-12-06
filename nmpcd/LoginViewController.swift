@@ -16,11 +16,15 @@ class LoginViewController: UIViewController {
     var handle: AuthStateDidChangeListenerHandle!
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         self.emailText.borderStyle = UITextBorderStyle.roundedRect
         self.passwordText.borderStyle = UITextBorderStyle.roundedRect
+        AppUtility.roundConner(item: loginButton, radius: 8)
+        AppUtility.roundConner(item: signUpButton, radius: 8)
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,7 +48,11 @@ class LoginViewController: UIViewController {
         } else {
             Auth.auth().signIn(withEmail: self.emailText.text!, password: self.passwordText.text!) { (user, error) in
                 if error == nil {
-                    self.pushAlert(title: "Success", message: "Login successful.", action: "OK", style: .cancel)
+                    let alert = UIAlertController(title: "Success", message: "Login successful.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {(action: UIAlertAction!) in
+                        self.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
                 } else {
                     self.pushAlert(title: "Error", message: (error?.localizedDescription)!, action: "OK", style: .cancel)
                 }
@@ -69,6 +77,7 @@ class LoginViewController: UIViewController {
                     title = "Success"
                     message = "Password reset email sent."
                 }
+                
                 self.pushAlert(title: title, message: message, action: "OK", style: .cancel)
             })
         }))
