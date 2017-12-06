@@ -35,11 +35,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        hambergerButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: hambergerButton)
     }
-    
-    @objc func fbButtonPressed() {
-        
-        print("Share to fb")
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -59,6 +54,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func clearRecentMethod(_ sender: Any) {
         self.recentSearch.removeAll()
         self.tableView.reloadData()
+    }
+    
+    @IBAction func accountMethod(_ sender: Any) {
+        if Auth.auth().currentUser != nil {
+            performSegue(withIdentifier: "accountSegue", sender: self.navigationItem.leftBarButtonItem)
+        } else {
+            performSegue(withIdentifier: "loginSegue", sender: self.navigationItem.leftBarButtonItem)
+        }
     }
     
     @IBAction func scanBarcodeMethod(_ sender: Any) {
