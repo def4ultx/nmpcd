@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		291281DB1FD729D600C32E14 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291281DA1FD729D600C32E14 /* User.swift */; };
+		29147AD61FD83FEC006AD974 /* DesignableUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29147AD51FD83FEC006AD974 /* DesignableUITextField.swift */; };
 		294CC08C1FD6648E0051BD3D /* Medicine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294CC08B1FD6648E0051BD3D /* Medicine.swift */; };
 		29C6E65C1FB0E30100EA8E9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6E65B1FB0E30100EA8E9E /* AppDelegate.swift */; };
 		29C6E6611FB0E30200EA8E9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C6E65F1FB0E30200EA8E9E /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		291281DA1FD729D600C32E14 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		29147AD51FD83FEC006AD974 /* DesignableUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableUITextField.swift; sourceTree = "<group>"; };
 		294CC08B1FD6648E0051BD3D /* Medicine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicine.swift; sourceTree = "<group>"; };
 		29C6E6581FB0E30100EA8E9E /* nmpcd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nmpcd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C6E65B1FB0E30100EA8E9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				294CC08B1FD6648E0051BD3D /* Medicine.swift */,
 				654D6BB41FD6D4C600BB964F /* AnnotatedPhotoCell.swift */,
 				291281DA1FD729D600C32E14 /* User.swift */,
+				29147AD51FD83FEC006AD974 /* DesignableUITextField.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				29DC230C1FD3E8F5002F1CB5 /* SearchViewController.swift in Sources */,
 				654D6BB51FD6D4C600BB964F /* AnnotatedPhotoCell.swift in Sources */,
 				29DC23121FD465A7002F1CB5 /* AccountViewController.swift in Sources */,
+				29147AD61FD83FEC006AD974 /* DesignableUITextField.swift in Sources */,
 				291281DB1FD729D600C32E14 /* User.swift in Sources */,
 				29C6E65C1FB0E30100EA8E9E /* AppDelegate.swift in Sources */,
 				29DC23081FD3E8B1002F1CB5 /* DetailViewController.swift in Sources */,
@@ -442,10 +446,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R5YW9Z98YM;
+				DEVELOPMENT_TEAM = T5FPC22W36;
 				INFOPLIST_FILE = nmpcd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.egco4288.nmpcd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.egco428.nmpcd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -458,10 +462,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R5YW9Z98YM;
+				DEVELOPMENT_TEAM = T5FPC22W36;
 				INFOPLIST_FILE = nmpcd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.egco4288.nmpcd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.egco428.nmpcd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
