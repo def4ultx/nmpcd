@@ -8,19 +8,29 @@
 
 import Foundation
 class Medicine {
-    var medStrenght: Int!
-    var medName: String!
-    var medUses: String!
-    var medUnit: String!
-    var medStorage: String!
-    var medDosageForm: String!
-    var medPrecaution: String!
-    var medAdministration: String!
-    var barcodeNo: String!
-    var genericName: String!
-    init?(barcode: String?, usage: String?, name: String?) {
-        if (barcode!.isEmpty || usage!.isEmpty || name!.isEmpty) {
-            return nil
-        }
+    var Administration: String!
+    var BarcodeNo: String!
+    var DosageForm: String!
+    var GenericName: String!
+    var Precaution: String!
+    var Storage: String!
+    var Strength: String!
+    var TradeName: String!
+    var Unit: String!
+    var Uses: String!
+    init(admin: String?, barcode: String?, dosage: String?, generic: String?, precaution: String?, storage: String?, strength: String?, trade: String?, unit: String?, uses: String?) {
+//        if (barcode!.isEmpty || usage!.isEmpty || name!.isEmpty) {
+//            return nil
+//        }
+        self.Administration = admin         != nil ? admin  : nil
+        self.BarcodeNo      = barcode       != nil ? barcode: nil
+        self.DosageForm     = dosage        != nil ? dosage : nil
+        self.GenericName    = generic       != nil ? generic    : nil
+        self.Precaution     = precaution    != nil ? precaution : nil
+        self.Storage        = storage       != nil ? storage    : nil
+        self.Strength       = strength      != nil ? strength   : nil
+        self.TradeName      = trade         != nil ? trade  : nil
+        self.Unit           = unit          != nil ? unit   : nil
+        self.Uses           = uses          != nil ? uses   : nil
     }
 }

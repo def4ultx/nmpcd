@@ -13,6 +13,7 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var slideShow: ImageSlideshow!
     let localSource = [ImageSource(imageString: "nmpcd")!, ImageSource(imageString: "nmpcd")!]
+    var medData: Medicine!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -22,6 +23,14 @@ class DetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        AppUtility.lockOrientation(.portrait)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        AppUtility.lockOrientation(.all)
     }
     
     func setupSlideShow() {
@@ -34,9 +43,9 @@ class DetailViewController: UIViewController {
         slideShow.contentScaleMode = UIViewContentMode.scaleAspectFit
         
         slideShow.activityIndicator = DefaultActivityIndicator(style: .white, color: UIColor.red)
-        slideShow.currentPageChanged = { page in
-            print("current page:", page)
-        }
+//        slideShow.currentPageChanged = { page in
+//            print("current page:", page)
+//        }
         slideShow.setImageInputs(localSource)
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.didTap))
         slideShow.addGestureRecognizer(recognizer)

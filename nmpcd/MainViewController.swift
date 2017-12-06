@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 import BarcodeScanner
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
@@ -15,10 +17,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var searchBar: UISearchBar!
     private var recentSearch = ["Paracetamol","Vitamin C","Vitamin E"]
     private let barcodeController = BarcodeScannerController()
-    
+    var medData: Medicine!
+    var databaseRef: DatabaseReference!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.databaseRef = Database.database().reference()
         self.hideKeyboardWhenTappedAround()
         self.tableView.tableFooterView = UIView()
         self.barcodeController.codeDelegate = self
@@ -29,6 +33,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        AppUtility.lockOrientation(.portrait)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppUtility.lockOrientation(.all)
     }
     
     @IBAction func clearRecentMethod(_ sender: Any) {
@@ -86,9 +100,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             let destination = segue.destination as! SearchViewController
             destination.searchText = searchText
+        } else if segue.identifier == "detailSegue" {
+            let destination = segue.destination as! DetailViewController
+            destination.medData = self.medData
         }
     }
-
 }
 
 extension UIViewController {
@@ -103,16 +119,23 @@ extension UIViewController {
 }
 
 extension MainViewController: BarcodeScannerCodeDelegate {
-    
     func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
         print("Barcode Data: \(code)")
         print("Symbology Type: \(type)")
-        
-//        let delayTime = DispatchTime.now() + Double(Int64(6 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-//        DispatchQueue.main.asyncAfter(deadline: delayTime) {
-//            controller.resetWithError()
-//        }
-        controller.dismiss(animated: true, completion: nil)
+        self.databaseRef.child("medicine-list")
+            .queryOrdered(byChild: "BarcodeNo")
+            .queryEqual(toValue: code)
+            .observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.exists() {
+                    let childData = (snapshot.value as! NSDictionary).allValues[0] as! NSDictionary
+                    self.medData = AppUtility.queryData(childData: childData)
+                    self.barcodeController.reset(animated: true)
+                    self.barcodeController.dismiss(animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "detailSegue", sender: self.databaseRef)
+                } else {
+                    self.barcodeController.resetWithError()
+                }
+        })
     }
 }
 
@@ -127,5 +150,32 @@ extension MainViewController: BarcodeScannerDismissalDelegate {
     
     func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
         controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+struct AppUtility {
+    static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
+
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            delegate.orientationLock = orientation
+        }
+    }
+    static func lockOrientation(_ orientation: UIInterfaceOrientationMask, andRotateTo rotateOrientation:UIInterfaceOrientation) {
+        self.lockOrientation(orientation)
+        UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
+    }
+    static func queryData(childData: NSDictionary) -> Medicine {
+        let administration = childData.value(forKey: "Administration") as! String
+        let barcode = childData.value(forKey: "BarcodeNo") as! String
+        let dosage = childData.value(forKey: "DosageForm") as! String
+        let generic = childData.value(forKey: "GenericName") as! String
+        let precaution = childData.value(forKey: "Precaution") as! String
+        let strength = childData.value(forKey: "Strength") as! String
+        let storage = childData.value(forKey: "Storage") as! String
+        let tradename = childData.value(forKey: "TradeName") as! String
+        let unit = childData.value(forKey: "Unit") as! String
+        let uses = childData.value(forKey: "Uses") as! String
+        let medData = Medicine(admin: administration, barcode: barcode, dosage: dosage, generic: generic, precaution: precaution, storage: storage, strength: strength, trade: tradename, unit: unit, uses: uses)
+        return medData
     }
 }

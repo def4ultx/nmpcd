@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 import BarcodeScanner
 
 class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
@@ -15,25 +17,36 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     //["tylenol-8hour","tylenol-500ml-100pcs","tylenol-500ml-200pcs","tylenol-childrens","tylenol-infants-5ml"]
     
     var searchText: String!
+    var databaseRef: DatabaseReference!
     private var medData = [Medicine]()
     private let barcodeController = BarcodeScannerController()
     @IBOutlet weak var searchBar: UISearchBar!
-
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.navigationItem.title = searchText
+        self.databaseRef = Database.database().reference()
         self.hideKeyboardWhenTappedAround()
         self.barcodeController.codeDelegate = self
         self.barcodeController.errorDelegate = self
         self.barcodeController.dismissalDelegate = self
         
         //collectionView.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
+        self.loadSearchData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        AppUtility.lockOrientation(.portrait)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        AppUtility.lockOrientation(.all)
     }
     
     @IBAction func scanBarcodeMethod(_ sender: Any) {
@@ -42,19 +55,20 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if searchBar.text != nil {
-            print("request data")
+        if searchBar.text != nil && searchBar.text != "" {
+            self.searchText = searchBar.text
+            self.loadSearchData()
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return medData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnnotatedPhotoCell", for: indexPath) as! AnnotatedPhotoCell
-        cell.imageView.image = UIImage(named: photos[indexPath.item])
-        cell.medNameLabel.text = photos[indexPath.item]
+        cell.imageView.image = UIImage(named: photos[0])
+        cell.medNameLabel.text = medData[indexPath.row].TradeName
         return cell
     }
     
@@ -63,15 +77,28 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         return CGSize(width: itemSize, height: itemSize)
     }
     
-    
     private func loadSearchData() {
-        
+        self.navigationItem.title = searchText
+        searchText = searchText.lowercased()
+        self.databaseRef.child("medicine-list")
+            .queryOrdered(byChild: "GenericName")
+            .queryStarting(atValue: searchText)
+            .queryEnding(atValue: searchText + "{\\uf8ff}")
+            .observeSingleEvent(of: .value, with: { (snapshot) in
+                for child in snapshot.children {
+                    let childData = (child as! DataSnapshot).value as! NSDictionary
+                    let med = AppUtility.queryData(childData: childData)
+                    self.medData.append(med)
+                }
+                self.collectionView.reloadData()
+            }) { (error) in
+                print(error.localizedDescription)
+        }
     }
 }
 
 
 extension SearchViewController: BarcodeScannerCodeDelegate {
-    
     func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
         print("Barcode Data: \(code)")
         print("Symbology Type: \(type)")
@@ -84,14 +111,12 @@ extension SearchViewController: BarcodeScannerCodeDelegate {
 }
 
 extension SearchViewController: BarcodeScannerErrorDelegate {
-    
     func barcodeScanner(_ controller: BarcodeScannerController, didReceiveError error: Error) {
         print(error)
     }
 }
 
 extension SearchViewController: BarcodeScannerDismissalDelegate {
-    
     func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
         controller.dismiss(animated: true, completion: nil)
     }

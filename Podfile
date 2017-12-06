@@ -9,7 +9,8 @@ target 'nmpcd' do
     pod 'ImageSlideshow', '~> 1.4'
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
-    pod 'GoogleSignIn'
+    pod 'Firebase/Database'
+    #pod 'GoogleSignIn'
     pod 'BarcodeScanner'
     use_frameworks!
 end

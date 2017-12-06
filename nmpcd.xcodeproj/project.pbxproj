@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		291281DB1FD729D600C32E14 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291281DA1FD729D600C32E14 /* User.swift */; };
 		294CC08C1FD6648E0051BD3D /* Medicine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294CC08B1FD6648E0051BD3D /* Medicine.swift */; };
 		29C6E65C1FB0E30100EA8E9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6E65B1FB0E30100EA8E9E /* AppDelegate.swift */; };
 		29C6E6611FB0E30200EA8E9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C6E65F1FB0E30200EA8E9E /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		291281DA1FD729D600C32E14 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		294CC08B1FD6648E0051BD3D /* Medicine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicine.swift; sourceTree = "<group>"; };
 		29C6E6581FB0E30100EA8E9E /* nmpcd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nmpcd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C6E65B1FB0E30100EA8E9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			children = (
 				294CC08B1FD6648E0051BD3D /* Medicine.swift */,
 				654D6BB41FD6D4C600BB964F /* AnnotatedPhotoCell.swift */,
+				291281DA1FD729D600C32E14 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -265,19 +268,19 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-nmpcd/Pods-nmpcd-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BarcodeScanner/BarcodeScanner.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BarcodeScanner.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageSlideshow.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,6 +300,7 @@
 				29DC230C1FD3E8F5002F1CB5 /* SearchViewController.swift in Sources */,
 				654D6BB51FD6D4C600BB964F /* AnnotatedPhotoCell.swift in Sources */,
 				29DC23121FD465A7002F1CB5 /* AccountViewController.swift in Sources */,
+				291281DB1FD729D600C32E14 /* User.swift in Sources */,
 				29C6E65C1FB0E30100EA8E9E /* AppDelegate.swift in Sources */,
 				29DC23081FD3E8B1002F1CB5 /* DetailViewController.swift in Sources */,
 				29DC230E1FD3E900002F1CB5 /* MainViewController.swift in Sources */,
