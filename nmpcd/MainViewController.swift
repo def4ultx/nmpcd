@@ -24,6 +24,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.barcodeController.codeDelegate = self
         self.barcodeController.errorDelegate = self
         self.barcodeController.dismissalDelegate = self
+        
+//        let hambergerButton = UIButton(type: .system)
+//        hambergerButton.setImage(#imageLiteral(resourceName: "hamberger"), for: .normal)
+//        hambergerButton.addTarget(self, action: #selector(MainViewController.fbButtonPressed), for: UIControlEvents.touchUpInside)
+//        hambergerButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: hambergerButton)
+    }
+    
+    @objc func fbButtonPressed() {
+        
+        print("Share to fb")
     }
 
     override func didReceiveMemoryWarning() {
