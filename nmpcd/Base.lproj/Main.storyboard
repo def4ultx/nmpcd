@@ -310,6 +310,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="ageLabel" destination="aPV-31-TRz" id="msh-nB-y7r"/>
+                        <outlet property="birthdayLabel" destination="HSD-6F-wEj" id="n9Q-KQ-4vX"/>
+                        <outlet property="emailLabel" destination="q4V-OU-Qwe" id="E1E-5g-D0g"/>
+                        <outlet property="fullnameLabel" destination="kPL-W1-bIW" id="zl4-6L-WXk"/>
+                        <outlet property="genderLabel" destination="S9D-Ez-U60" id="oPC-3I-EBC"/>
                         <outlet property="logoutButton" destination="SWc-AZ-eYf" id="na8-H0-zcU"/>
                     </connections>
                 </viewController>
@@ -596,7 +601,11 @@
                         <viewLayoutGuide key="safeArea" id="KGg-VC-60s"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="Q8v-N2-gmn">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="eTk-uE-amn"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="eTk-uE-amn">
+                            <connections>
+                                <segue destination="dSi-g9-zhc" kind="presentation" id="lTB-uu-T6d"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="slideShow" destination="Lf6-6V-1bZ" id="QMG-7Q-dxW"/>
@@ -899,6 +908,6 @@
         <image name="user" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="erU-xo-DRH"/>
+        <segue reference="I9e-uK-soh"/>
     </inferredMetricsTieBreakers>
 </document>

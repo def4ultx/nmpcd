@@ -15,6 +15,11 @@ class AccountViewController: UIViewController {
 
     var databaseRef: DatabaseReference!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var fullnameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var birthdayLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         AppUtility.roundConner(item: self.logoutButton, radius: 8)
@@ -22,8 +27,19 @@ class AccountViewController: UIViewController {
         self.databaseRef = Database.database().reference()
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user != nil {
-                print(user?.email!)
-            } else {
+                self.databaseRef.child("user-list")
+                    .queryOrdered(byChild: "email")
+                    .queryEqual(toValue: user?.email!)
+                    .observeSingleEvent(of: .value, with: { (snapshot) in
+                        if snapshot.exists() {
+                            let childData = (snapshot.value as! NSDictionary).allValues[0] as! NSDictionary
+                            self.fullnameLabel.text = childData.value(forKey: "fullname") as? String
+                            self.emailLabel.text = childData.value(forKey: "email") as? String
+                            self.genderLabel.text = childData.value(forKey: "gender") as? String
+                            self.birthdayLabel.text = childData.value(forKey: "birthday") as? String
+                            self.ageLabel.text = childData.value(forKey: "age") as? String
+                        }
+                })
             }
         }
     }
@@ -38,7 +54,9 @@ class AccountViewController: UIViewController {
             do {
                 try Auth.auth().signOut()
                 let alert = UIAlertController(title: "Success", message: "Logout successful.", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {(action: UIAlertAction!) in
+                    self.dismiss(animated: true, completion: nil)
+                }))
                 self.present(alert, animated: true, completion: nil)
             } catch let error as NSError {
                 print(error.localizedDescription)

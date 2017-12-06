@@ -15,7 +15,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    private var recentSearch = ["Paracetamol","Vitamin C","Vitamin E"]
+    private var recentSearch: [String]!
     private let barcodeController = BarcodeScannerController()
     var medData: Medicine!
     var databaseRef: DatabaseReference!
@@ -28,6 +28,18 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.barcodeController.codeDelegate = self
         self.barcodeController.errorDelegate = self
         self.barcodeController.dismissalDelegate = self
+        if let email = Auth.auth().currentUser?.email {
+            self.databaseRef.child("user-list")
+                .queryOrdered(byChild: "email")
+                .queryEqual(toValue: email)
+                .observeSingleEvent(of: .value, with: { (snapshot) in
+                    if snapshot.exists() {
+                        let childData = (snapshot.value as! NSDictionary).allValues[0] as! NSDictionary
+                        self.recentSearch = childData.value(forKey: "recent") as! [String]
+                    }
+                    self.tableView.reloadData()
+                })
+        }
         
 //        let hambergerButton = UIButton(type: .system)
 //        hambergerButton.setImage(#imageLiteral(resourceName: "hamberger"), for: .normal)
