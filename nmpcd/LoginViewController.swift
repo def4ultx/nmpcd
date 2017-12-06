@@ -18,11 +18,24 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordText: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+        self.emailText.borderStyle = UITextBorderStyle.roundedRect
+        self.passwordText.borderStyle = UITextBorderStyle.roundedRect
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        AppUtility.lockOrientation(.portrait)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppUtility.lockOrientation(.all)
     }
     
     @IBAction func loginAction(_ sender: Any) {

@@ -180,4 +180,8 @@ struct AppUtility {
         let medData = Medicine(admin: administration, barcode: barcode, dosage: dosage, generic: generic, precaution: precaution, storage: storage, strength: strength, trade: tradename, unit: unit, uses: uses, key: key)
         return medData!
     }
+    static func roundConner(item: Any, radius: CGFloat) {
+        (item as AnyObject).layer.masksToBounds = true
+        (item as AnyObject).layer.cornerRadius = radius
+    }
 }
