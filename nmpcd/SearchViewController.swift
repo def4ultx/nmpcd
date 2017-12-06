@@ -11,10 +11,12 @@ import Firebase
 import FirebaseDatabase
 import BarcodeScanner
 
-class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
+class SearchViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
     var photos = ["1","2","3","4","5"]
-    //["tylenol-8hour","tylenol-500ml-100pcs","tylenol-500ml-200pcs","tylenol-childrens","tylenol-infants-5ml"]
+    var screenSize: CGRect!
+    var screenWidth: CGFloat!
+    var screenHeight: CGFloat!
     
     var searchText: String!
     var databaseRef: DatabaseReference!
@@ -26,6 +28,23 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //let itemSize = UIScreen.main.bounds.width/2 - 3
+        screenSize = UIScreen.main.bounds
+        screenWidth = screenSize.width
+        screenHeight = screenSize.height
+        
+//        let layout = UICollectionViewFlowLayout()
+//        layout.sectionInset = UIEdgeInsetsMake(20, 0, 10, 0)
+//        layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width: screenWidth/2, height: screenWidth/2)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        
+        collectionView.collectionViewLayout = layout
+        
         // Do any additional setup after loading the view.
         self.databaseRef = Database.database().reference()
         self.hideKeyboardWhenTappedAround()

@@ -17,10 +17,10 @@ class AnnotatedPhotoCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        containerView.layer.cornerRadius = 6
-        containerView.layer.borderWidth = 3
+        //containerView.layer.cornerRadius = 6
+        containerView.layer.borderWidth = 2
         containerView.layer.borderColor = UIColor.lightGray.cgColor
-        containerView.layer.masksToBounds = true
+        //containerView.layer.masksToBounds = true
     }
     
 }
