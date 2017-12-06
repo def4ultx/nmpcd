@@ -20,6 +20,7 @@
 		29DC23141FD465B2002F1CB5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC23131FD465B2002F1CB5 /* LoginViewController.swift */; };
 		3828F9064ABA4C23629CBC0C /* Pods_nmpcd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE2AC2A50357F451D495CFC /* Pods_nmpcd.framework */; };
 		654D6BB51FD6D4C600BB964F /* AnnotatedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654D6BB41FD6D4C600BB964F /* AnnotatedPhotoCell.swift */; };
+		CEB898131FD7E3E800F1B91B /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB898121FD7E3E800F1B91B /* EditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		654D6BB41FD6D4C600BB964F /* AnnotatedPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotatedPhotoCell.swift; sourceTree = "<group>"; };
 		9648A608DE60094E6BAC0168 /* Pods-nmpcd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nmpcd.release.xcconfig"; path = "Pods/Target Support Files/Pods-nmpcd/Pods-nmpcd.release.xcconfig"; sourceTree = "<group>"; };
 		C62AAD4B3794FA14EA0A06AF /* Pods-nmpcd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nmpcd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nmpcd/Pods-nmpcd.debug.xcconfig"; sourceTree = "<group>"; };
+		CEB898121FD7E3E800F1B91B /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				29DC230D1FD3E900002F1CB5 /* MainViewController.swift */,
 				29DC23111FD465A7002F1CB5 /* AccountViewController.swift */,
 				29DC23131FD465B2002F1CB5 /* LoginViewController.swift */,
+				CEB898121FD7E3E800F1B91B /* EditViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				29C6E65C1FB0E30100EA8E9E /* AppDelegate.swift in Sources */,
 				29DC23081FD3E8B1002F1CB5 /* DetailViewController.swift in Sources */,
 				29DC230E1FD3E900002F1CB5 /* MainViewController.swift in Sources */,
+				CEB898131FD7E3E800F1B91B /* EditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,10 +442,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = GG3T7HSC6K;
 				INFOPLIST_FILE = nmpcd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.egco428.nmpcd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sirawithonghom.nmpcd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -454,10 +458,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = GG3T7HSC6K;
 				INFOPLIST_FILE = nmpcd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.egco428.nmpcd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sirawithonghom.nmpcd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
