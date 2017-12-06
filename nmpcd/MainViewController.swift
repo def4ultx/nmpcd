@@ -118,10 +118,8 @@ extension UIViewController {
     }
 }
 
-extension MainViewController: BarcodeScannerCodeDelegate {
+extension MainViewController: BarcodeScannerCodeDelegate, BarcodeScannerErrorDelegate, BarcodeScannerDismissalDelegate {
     func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
-        print("Barcode Data: \(code)")
-        print("Symbology Type: \(type)")
         self.databaseRef.child("medicine-list")
             .queryOrdered(byChild: "BarcodeNo")
             .queryEqual(toValue: code)
@@ -137,17 +135,9 @@ extension MainViewController: BarcodeScannerCodeDelegate {
                 }
         })
     }
-}
-
-extension MainViewController: BarcodeScannerErrorDelegate {
-    
     func barcodeScanner(_ controller: BarcodeScannerController, didReceiveError error: Error) {
         print(error)
     }
-}
-
-extension MainViewController: BarcodeScannerDismissalDelegate {
-    
     func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
         controller.dismiss(animated: true, completion: nil)
     }
@@ -176,6 +166,6 @@ struct AppUtility {
         let unit = childData.value(forKey: "Unit") as! String
         let uses = childData.value(forKey: "Uses") as! String
         let medData = Medicine(admin: administration, barcode: barcode, dosage: dosage, generic: generic, precaution: precaution, storage: storage, strength: strength, trade: tradename, unit: unit, uses: uses)
-        return medData
+        return medData!
     }
 }

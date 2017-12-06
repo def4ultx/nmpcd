@@ -19,6 +19,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     var searchText: String!
     var databaseRef: DatabaseReference!
     private var medData = [Medicine]()
+    private var medDetail: Medicine!
     private let barcodeController = BarcodeScannerController()
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -31,7 +32,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.barcodeController.codeDelegate = self
         self.barcodeController.errorDelegate = self
         self.barcodeController.dismissalDelegate = self
-        
         //collectionView.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
         self.loadSearchData()
     }
@@ -81,7 +81,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.navigationItem.title = searchText
         searchText = searchText.lowercased()
         self.databaseRef.child("medicine-list")
-            .queryOrdered(byChild: "GenericName")
+            .queryOrdered(byChild: "LowerGenericName")
             .queryStarting(atValue: searchText)
             .queryEnding(atValue: searchText + "{\\uf8ff}")
             .observeSingleEvent(of: .value, with: { (snapshot) in
@@ -95,31 +95,44 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 print(error.localizedDescription)
         }
     }
-}
-
-
-extension SearchViewController: BarcodeScannerCodeDelegate {
-    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
-        print("Barcode Data: \(code)")
-        print("Symbology Type: \(type)")
-        
-        let delayTime = DispatchTime.now() + Double(Int64(6 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-        DispatchQueue.main.asyncAfter(deadline: delayTime) {
-            controller.resetWithError()
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailSegue" {
+            var med: Medicine!
+            if type(of: sender!) == DatabaseReference.self {
+                med = self.medDetail!
+            } else if type(of: sender!) == AnnotatedPhotoCell.self {
+                let cell = sender as? UICollectionViewCell
+                let indexPath = self.collectionView.indexPath(for: cell!)
+                med = medData[(indexPath?.row)!]
+            }
+            let destination = segue.destination as! DetailViewController
+            destination.medData = med!
         }
     }
 }
 
-extension SearchViewController: BarcodeScannerErrorDelegate {
+extension SearchViewController: BarcodeScannerCodeDelegate, BarcodeScannerErrorDelegate, BarcodeScannerDismissalDelegate {
+    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
+        self.databaseRef.child("medicine-list")
+            .queryOrdered(byChild: "BarcodeNo")
+            .queryEqual(toValue: code)
+            .observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.exists() {
+                    let childData = (snapshot.value as! NSDictionary).allValues[0] as! NSDictionary
+                    self.medDetail = AppUtility.queryData(childData: childData)
+                    self.barcodeController.reset(animated: true)
+                    self.barcodeController.dismiss(animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "detailSegue", sender: self.databaseRef)
+                } else {
+                    self.barcodeController.resetWithError()
+                }
+            })
+    }
     func barcodeScanner(_ controller: BarcodeScannerController, didReceiveError error: Error) {
         print(error)
     }
-}
-
-extension SearchViewController: BarcodeScannerDismissalDelegate {
     func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
         controller.dismiss(animated: true, completion: nil)
     }
 }
-
-

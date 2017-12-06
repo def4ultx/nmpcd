@@ -18,7 +18,7 @@ class Medicine {
     var TradeName: String!
     var Unit: String!
     var Uses: String!
-    init(admin: String?, barcode: String?, dosage: String?, generic: String?, precaution: String?, storage: String?, strength: String?, trade: String?, unit: String?, uses: String?) {
+    init?(admin: String?, barcode: String?, dosage: String?, generic: String?, precaution: String?, storage: String?, strength: String?, trade: String?, unit: String?, uses: String?) {
 //        if (barcode!.isEmpty || usage!.isEmpty || name!.isEmpty) {
 //            return nil
 //        }
