@@ -18,7 +18,8 @@ class Medicine {
     var TradeName: String!
     var Unit: String!
     var Uses: String!
-    init?(admin: String?, barcode: String?, dosage: String?, generic: String?, precaution: String?, storage: String?, strength: String?, trade: String?, unit: String?, uses: String?) {
+    var key: String!
+    init?(admin: String?, barcode: String?, dosage: String?, generic: String?, precaution: String?, storage: String?, strength: String?, trade: String?, unit: String?, uses: String?, key: String?) {
 //        if (barcode!.isEmpty || usage!.isEmpty || name!.isEmpty) {
 //            return nil
 //        }
@@ -32,5 +33,6 @@ class Medicine {
         self.TradeName      = trade         != nil ? trade  : nil
         self.Unit           = unit          != nil ? unit   : nil
         self.Uses           = uses          != nil ? uses   : nil
+        self.key            = key           != nil ? key    : nil
     }
 }

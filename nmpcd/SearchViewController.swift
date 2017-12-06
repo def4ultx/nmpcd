@@ -55,8 +55,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if searchBar.text != nil && searchBar.text != "" {
-            self.searchText = searchBar.text
+        if let text = searchBar.text {
+            self.searchText = text
             self.loadSearchData()
         }
     }
@@ -77,9 +77,11 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         return CGSize(width: itemSize, height: itemSize)
     }
     
-    private func loadSearchData() {
+    func loadSearchData() {
+        self.medData = [Medicine]()
         self.navigationItem.title = searchText
-        searchText = searchText.lowercased()
+        self.searchBar.text = searchText
+        self.searchText = searchText.lowercased()
         self.databaseRef.child("medicine-list")
             .queryOrdered(byChild: "LowerGenericName")
             .queryStarting(atValue: searchText)
@@ -90,7 +92,20 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                     let med = AppUtility.queryData(childData: childData)
                     self.medData.append(med)
                 }
-                self.collectionView.reloadData()
+                self.databaseRef.child("medicine-list")
+                    .queryOrdered(byChild: "LowerTradeName")
+                    .queryStarting(atValue: self.searchText)
+                    .queryEnding(atValue: self.searchText + "{\\uf8ff}")
+                    .observeSingleEvent(of: .value, with: { (snapshot) in
+                        for child in snapshot.children {
+                            let childData = (child as! DataSnapshot).value as! NSDictionary
+                            let med = AppUtility.queryData(childData: childData)
+                            if (!self.medData.contains(where: { $0.key == med.key})) {
+                                self.medData.append(med)
+                            }
+                        }
+                        self.collectionView.reloadData()
+                })
             }) { (error) in
                 print(error.localizedDescription)
         }

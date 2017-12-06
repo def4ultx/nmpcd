@@ -84,7 +84,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if searchBar.text != nil {
+        if let _ = searchBar.text {
             performSegue(withIdentifier: "searchSegue", sender: searchBar)
         }
     }
@@ -165,7 +165,8 @@ struct AppUtility {
         let tradename = childData.value(forKey: "TradeName") as! String
         let unit = childData.value(forKey: "Unit") as! String
         let uses = childData.value(forKey: "Uses") as! String
-        let medData = Medicine(admin: administration, barcode: barcode, dosage: dosage, generic: generic, precaution: precaution, storage: storage, strength: strength, trade: tradename, unit: unit, uses: uses)
+        let key = childData.value(forKey: "key") as! String
+        let medData = Medicine(admin: administration, barcode: barcode, dosage: dosage, generic: generic, precaution: precaution, storage: storage, strength: strength, trade: tradename, unit: unit, uses: uses, key: key)
         return medData!
     }
 }
