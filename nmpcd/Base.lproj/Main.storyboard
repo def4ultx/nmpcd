@@ -518,20 +518,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Barcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HeA-bk-eDM">
-                                <rect key="frame" x="17" y="586" width="62" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWP-66-Al6">
-                                <rect key="frame" x="141" y="581" width="192" height="30"/>
+                                <rect key="frame" x="141" y="594" width="192" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eC0-hr-0wl">
+                                <rect key="frame" x="17" y="584" width="64" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="barcode"/>
+                                <connections>
+                                    <action selector="barcodeMethod:" destination="kPY-m4-UAV" eventType="touchUpInside" id="U9P-uO-R1C"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="aED-FS-upb"/>
@@ -551,6 +552,7 @@
                         <outlet property="addImage" destination="TkL-Q1-YZr" id="tNK-LE-tAW"/>
                         <outlet property="addPhotoButton" destination="rbE-ya-GPI" id="2Qm-F4-yiK"/>
                         <outlet property="adminField" destination="Klo-Fe-xfR" id="gRb-wP-16v"/>
+                        <outlet property="barcodeButton" destination="eC0-hr-0wl" id="9rk-sK-5C5"/>
                         <outlet property="barcodeField" destination="cWP-66-Al6" id="1pq-FB-q1w"/>
                         <outlet property="cancelButton" destination="pOO-mm-L2S" id="y29-nl-jvo"/>
                         <outlet property="dosageField" destination="LxD-nD-nyI" id="et3-qf-Kxn"/>
@@ -616,6 +618,6 @@
         <image name="barcode" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="erU-xo-DRH"/>
+        <segue reference="I9e-uK-soh"/>
     </inferredMetricsTieBreakers>
 </document>
