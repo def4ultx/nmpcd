@@ -427,10 +427,10 @@
             </objects>
             <point key="canvasLocation" x="1620" y="98.50074962518741"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign Up View Controller-->
         <scene sceneID="OPC-l4-El6">
             <objects>
-                <viewController id="Ibb-bT-W8K" sceneMemberID="viewController">
+                <viewController id="Ibb-bT-W8K" customClass="SignUpViewController" customModule="nmpcd" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="35t-1Q-pu8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
