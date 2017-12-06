@@ -15,7 +15,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    private var recentSearch: [String]!
+    private var recentSearch: [String] = []
     private let barcodeController = BarcodeScannerController()
     var medData: Medicine!
     var databaseRef: DatabaseReference!
