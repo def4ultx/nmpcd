@@ -12,12 +12,31 @@ import ImageSlideshow
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var slideShow: ImageSlideshow!
-    let localSource = [ImageSource(imageString: "nmpcd")!, ImageSource(imageString: "nmpcd")!]
+    @IBOutlet weak var tradeLabel: UILabel!
+    @IBOutlet weak var genericLabel: UILabel!
+    @IBOutlet weak var strengthLabel: UILabel!
+    @IBOutlet weak var unitLabel: UILabel!
+    @IBOutlet weak var dosageLabel: UILabel!
+    @IBOutlet weak var usesLabel: UITextView!
+    @IBOutlet weak var adminTextView: UITextView!
+    @IBOutlet weak var precautionTextView: UITextView!
+    @IBOutlet weak var storageLabel: UILabel!
     var medData: Medicine!
+    
+    let localSource = [ImageSource(imageString: "nmpcd")!, ImageSource(imageString: "nmpcd")!]
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.setupSlideShow()
+        self.tradeLabel.text = medData.TradeName
+        self.genericLabel.text = medData.GenericName
+        self.strengthLabel.text = medData.Strength
+        self.unitLabel.text = medData.Unit
+        self.dosageLabel.text = medData.DosageForm
+        self.usesLabel.text = medData.Uses
+        self.adminTextView.text = medData.Administration
+        self.precautionTextView.text = medData.Precaution
+        self.storageLabel.text = medData.Storage
     }
 
     override func didReceiveMemoryWarning() {

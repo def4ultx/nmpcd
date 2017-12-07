@@ -88,6 +88,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegateFlowLayout
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnnotatedPhotoCell", for: indexPath) as! AnnotatedPhotoCell
         cell.imageView.image = UIImage(named: photos[0])
         cell.medNameLabel.text = medData[indexPath.row].TradeName
+        cell.medCaptionLabel.text = medData[indexPath.row].GenericName + " " + medData[indexPath.row].Strength + medData[indexPath.row].Unit
         return cell
     }
     

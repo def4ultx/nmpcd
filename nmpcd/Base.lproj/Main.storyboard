@@ -101,7 +101,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="emailText" destination="vZt-7I-8a7" id="GdV-Qr-T6d"/>
+                        <outlet property="loginButton" destination="7Nn-fa-Qrq" id="IpX-cB-tVt"/>
                         <outlet property="passwordText" destination="sLn-J2-Mb2" id="39I-Tc-P7K"/>
+                        <outlet property="signUpButton" destination="iod-GT-Zia" id="td3-Vl-LEU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M27-qE-NrT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,8 +182,18 @@
                     </view>
                     <navigationItem key="navigationItem" title="NMPCD" id="9rW-3Q-Oas">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Vxg-1L-kPo"/>
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="08c-fZ-Ygf"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="o0w-fN-4l5"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="menu-button" id="08c-fZ-Ygf">
+                            <inset key="imageInsets" minX="0.0" minY="-2" maxX="0.0" maxY="-2"/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="accountMethod:" destination="BYZ-38-t0r" id="gLF-vl-igv"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="o0w-fN-4l5">
+                            <connections>
+                                <segue destination="dSi-g9-zhc" kind="presentation" id="7F2-HH-a0S"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="FRa-Hb-YWn" id="6fw-2b-ktu"/>
@@ -252,7 +264,7 @@
                                 <rect key="frame" x="37" y="579" width="300" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.9137254901960784" green="0.24705882352941178" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Logout">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -260,6 +272,9 @@
                                         <integer key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="logoutAction:" destination="VbF-tu-wOT" eventType="touchUpInside" id="QWx-ea-GIR"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="bally.eiei@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q4V-OU-Qwe">
                                 <rect key="frame" x="117" y="277" width="238" height="21"/>
@@ -294,8 +309,20 @@
                         <viewLayoutGuide key="safeArea" id="EUs-x3-voe"/>
                     </view>
                     <navigationItem key="navigationItem" title="Account" id="Csz-SC-gqV">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="stop" id="cT1-en-fsC"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="9Y3-fa-2Hc">
+                            <connections>
+                                <action selector="backAction:" destination="VbF-tu-wOT" id="Vx3-6h-ldm"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="ageLabel" destination="aPV-31-TRz" id="msh-nB-y7r"/>
+                        <outlet property="birthdayLabel" destination="HSD-6F-wEj" id="n9Q-KQ-4vX"/>
+                        <outlet property="emailLabel" destination="q4V-OU-Qwe" id="E1E-5g-D0g"/>
+                        <outlet property="fullnameLabel" destination="kPL-W1-bIW" id="zl4-6L-WXk"/>
+                        <outlet property="genderLabel" destination="S9D-Ez-U60" id="oPC-3I-EBC"/>
+                        <outlet property="logoutButton" destination="SWc-AZ-eYf" id="na8-H0-zcU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zqn-Iu-ZA0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -420,6 +447,9 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="YFP-v3-nut"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vQX-RA-JmD">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="dSi-g9-zhc" kind="presentation" id="zbE-0G-Isy"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -703,7 +733,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Strenge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXl-Qy-TWY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Strength" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXl-Qy-TWY">
                                 <rect key="frame" x="10" y="373" width="355" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
@@ -814,10 +844,23 @@
                         <viewLayoutGuide key="safeArea" id="KGg-VC-60s"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="Q8v-N2-gmn">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="eTk-uE-amn"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="eTk-uE-amn">
+                            <connections>
+                                <segue destination="dSi-g9-zhc" kind="presentation" id="lTB-uu-T6d"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="adminTextView" destination="3LN-Si-hXi" id="Xx2-Qd-aIc"/>
+                        <outlet property="dosageLabel" destination="GbK-yi-PgH" id="4LB-mM-UA1"/>
+                        <outlet property="genericLabel" destination="viY-t9-VRi" id="tho-P6-4ew"/>
+                        <outlet property="precautionTextView" destination="aYU-Bo-TWX" id="DaS-Xl-cp9"/>
                         <outlet property="slideShow" destination="Lf6-6V-1bZ" id="QMG-7Q-dxW"/>
+                        <outlet property="storageLabel" destination="8hX-km-KD7" id="Ijs-ob-uKP"/>
+                        <outlet property="strengthLabel" destination="rn6-52-ufP" id="wTd-Fk-gIy"/>
+                        <outlet property="tradeLabel" destination="p9g-BS-xRA" id="cYL-CT-OOp"/>
+                        <outlet property="unitLabel" destination="lWI-4I-YDH" id="o1A-YX-j56"/>
+                        <outlet property="usesLabel" destination="blD-w1-jht" id="DVs-gJ-792"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MCp-2v-qaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1113,10 +1156,12 @@
         <image name="barcode" width="256" height="256"/>
         <image name="envelope" width="512" height="512"/>
         <image name="key" width="512" height="512"/>
+        <image name="menu-button" width="32" height="32"/>
         <image name="nmpcd" width="400" height="205"/>
         <image name="user" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="I9e-uK-soh"/>
+        <segue reference="7F2-HH-a0S"/>
+        <segue reference="erU-xo-DRH"/>
     </inferredMetricsTieBreakers>
 </document>

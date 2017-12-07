@@ -88,6 +88,12 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
+//            if user != nil {
+//                self.performSegue(withIdentifier: self.loginToList, sender: nil)
+//            }
+//        }
 
         self.addPhotoButton.titleLabel?.textAlignment = .center
         self.addPhotoButton.setTitle("add \n photo", for: UIControlState.normal)
