@@ -182,7 +182,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="NMPCD" id="9rW-3Q-Oas">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Vxg-1L-kPo"/>
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="08c-fZ-Ygf">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="menu-button" id="08c-fZ-Ygf">
+                            <inset key="imageInsets" minX="0.0" minY="-2" maxX="0.0" maxY="-2"/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="accountMethod:" destination="BYZ-38-t0r" id="gLF-vl-igv"/>
                             </connections>
@@ -924,6 +926,7 @@
         <image name="barcode" width="256" height="256"/>
         <image name="envelope" width="512" height="512"/>
         <image name="key" width="512" height="512"/>
+        <image name="menu-button" width="32" height="32"/>
         <image name="nmpcd" width="400" height="205"/>
         <image name="user" width="512" height="512"/>
     </resources>
