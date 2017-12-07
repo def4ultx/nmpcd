@@ -28,18 +28,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.barcodeController.codeDelegate = self
         self.barcodeController.errorDelegate = self
         self.barcodeController.dismissalDelegate = self
-        if let email = Auth.auth().currentUser?.email {
-            self.databaseRef.child("user-list")
-                .queryOrdered(byChild: "email")
-                .queryEqual(toValue: email)
-                .observeSingleEvent(of: .value, with: { (snapshot) in
-                    if snapshot.exists() {
-                        let childData = (snapshot.value as! NSDictionary).allValues[0] as! NSDictionary
-                        self.recentSearch = childData.value(forKey: "recent") as! [String]
-                    }
-                    self.tableView.reloadData()
-                })
-        }
         
 //        let hambergerButton = UIButton(type: .system)
 //        hambergerButton.setImage(#imageLiteral(resourceName: "hamberger"), for: .normal)
@@ -56,6 +44,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         AppUtility.lockOrientation(.portrait)
+        
+        if let email = Auth.auth().currentUser?.email {
+            self.databaseRef.child("user-list")
+                .queryOrdered(byChild: "email")
+                .queryEqual(toValue: email)
+                .observeSingleEvent(of: .value, with: { (snapshot) in
+                    if snapshot.exists() {
+                        let childData = (snapshot.value as! NSDictionary).allValues[0] as! NSDictionary
+                        self.recentSearch = childData.value(forKey: "recent") as! [String]
+                    }
+                    self.tableView.reloadData()
+                })
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -111,6 +112,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let _ = searchBar.text {
+//            if let email = Auth.auth().currentUser?.email {
+//                recentSearch.append("searchBar.text")
+//                if let objectData = try? JSONSerialization.data(withJSONObject: self.recentSearch, options: JSONSerialization.WritingOptions(rawValue: 0)) {
+//                    let objectString = String(data: objectData, encoding: .utf8)
+//                    self.databaseRef.child("user-list")
+//                        .queryOrdered(byChild: "email")
+//                        .queryEqual(toValue: email)
+//                        .setValue(objectString, forKey: "recent")
+//                }
+//            }
             performSegue(withIdentifier: "searchSegue", sender: searchBar)
         }
     }
