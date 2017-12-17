@@ -18,11 +18,12 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var genericField: UITextField!
     @IBOutlet weak var strengeField: UITextField!
+    @IBOutlet weak var unitField: UITextField!
     @IBOutlet weak var dosageField: UITextField!
-    @IBOutlet weak var usesView: UILabel!
-    @IBOutlet weak var adminField: UITextField!
+    @IBOutlet weak var usesTextView: UITextView!
+    @IBOutlet weak var adminTextView: UITextView!
     @IBOutlet weak var precautionView: UITextView!
-    @IBOutlet weak var storageField: UITextField!
+    @IBOutlet weak var storageTextView: UITextView!
     @IBOutlet weak var barcodeField: UITextField!
     
     var editTradeName = ""

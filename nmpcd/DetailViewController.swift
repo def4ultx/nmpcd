@@ -19,9 +19,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var strengthLabel: UILabel!
     @IBOutlet weak var unitLabel: UILabel!
     @IBOutlet weak var dosageLabel: UILabel!
-    @IBOutlet weak var usesLabel: UITextView!
-    @IBOutlet weak var adminTextView: UITextView!
-    @IBOutlet weak var precautionTextView: UITextView!
+    @IBOutlet weak var usesLabel: UILabel!
+    @IBOutlet weak var adminLabel: UILabel!
+    @IBOutlet weak var precautionLabel: UILabel!
     @IBOutlet weak var storageLabel: UILabel!
     
     let storageRef = Storage.storage().reference()
@@ -36,8 +36,8 @@ class DetailViewController: UIViewController {
         self.unitLabel.text = medData.Unit
         self.dosageLabel.text = medData.DosageForm
         self.usesLabel.text = medData.Uses
-        self.adminTextView.text = medData.Administration
-        self.precautionTextView.text = medData.Precaution
+        self.adminLabel.text = medData.Administration
+        self.precautionLabel.text = medData.Precaution
         self.storageLabel.text = medData.Storage
         
         self.navigationItem.title = medData.TradeName
