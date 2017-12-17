@@ -17,10 +17,11 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var strengthLabel: UILabel!
     @IBOutlet weak var unitLabel: UILabel!
     @IBOutlet weak var dosageLabel: UILabel!
-    @IBOutlet weak var usesLabel: UITextView!
-    @IBOutlet weak var adminTextView: UITextView!
-    @IBOutlet weak var precautionTextView: UITextView!
+    @IBOutlet weak var usesLabel: UILabel!
+    @IBOutlet weak var adminLabel: UILabel!
+    @IBOutlet weak var precautionLabel: UILabel!
     @IBOutlet weak var storageLabel: UILabel!
+    
     var medData: Medicine!
     
     let localSource = [ImageSource(imageString: "nmpcd")!, ImageSource(imageString: "nmpcd")!]
@@ -34,9 +35,18 @@ class DetailViewController: UIViewController {
         self.unitLabel.text = medData.Unit
         self.dosageLabel.text = medData.DosageForm
         self.usesLabel.text = medData.Uses
-        self.adminTextView.text = medData.Administration
-        self.precautionTextView.text = medData.Precaution
+        self.adminLabel.text = medData.Administration
+        self.precautionLabel.text = medData.Precaution
         self.storageLabel.text = medData.Storage
+//        self.tradeLabel.text = "medData.TradeName"
+//        self.genericLabel.text = "medData.GenericName"
+//        self.strengthLabel.text = "500"
+//        self.unitLabel.text = "mg"
+//        self.dosageLabel.text = "tablet"
+//        self.usesLabel.text = "medData.Uses"
+//        self.adminLabel.text = "medData.AdministrationmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmedData.PrecautionmedData.Administrationmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
+//        self.precautionLabel.text = "medData.PrecautionmedData.AdministrationmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmedData.PrecautionmedData.AdministrationmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmedData.PrecautionmedData.AdministrationmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmedData.PrecautionmedData.Administrationmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
+//        self.storageLabel.text = "medData.StoragemedData.AdministrationmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmedData.PrecautionmedData.Administrationmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
     }
 
     override func didReceiveMemoryWarning() {
