@@ -4,13 +4,11 @@ platform :ios, '10.0'
 
 target 'nmpcd' do
     # Pods for nmpcd
-    #pod 'Alamofire', '~>4.5'
-    #pod 'SwiftyJSON'
+    use_frameworks!
     pod 'ImageSlideshow', '~> 1.4'
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
-    #pod 'GoogleSignIn'
-    pod 'BarcodeScanner'
-    use_frameworks!
+    pod 'Firebase/Storage'
+    pod 'BarcodeScanner', '3.0.0'
 end

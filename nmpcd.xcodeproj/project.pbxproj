@@ -11,6 +11,7 @@
 		29147AD61FD83FEC006AD974 /* DesignableUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29147AD51FD83FEC006AD974 /* DesignableUITextField.swift */; };
 		29147AD81FD85391006AD974 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29147AD71FD85391006AD974 /* SignUpViewController.swift */; };
 		294CC08C1FD6648E0051BD3D /* Medicine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294CC08B1FD6648E0051BD3D /* Medicine.swift */; };
+		295F01071FE69095009AF119 /* Search.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 295F01051FE69095009AF119 /* Search.xcdatamodeld */; };
 		29C6E65C1FB0E30100EA8E9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6E65B1FB0E30100EA8E9E /* AppDelegate.swift */; };
 		29C6E6611FB0E30200EA8E9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C6E65F1FB0E30200EA8E9E /* Main.storyboard */; };
 		29C6E6631FB0E30200EA8E9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C6E6621FB0E30200EA8E9E /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		29147AD51FD83FEC006AD974 /* DesignableUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableUITextField.swift; sourceTree = "<group>"; };
 		29147AD71FD85391006AD974 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		294CC08B1FD6648E0051BD3D /* Medicine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicine.swift; sourceTree = "<group>"; };
+		295F01061FE69095009AF119 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		29C6E6581FB0E30100EA8E9E /* nmpcd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nmpcd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C6E65B1FB0E30100EA8E9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29C6E6601FB0E30200EA8E9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		29DC23031FD3E2E1002F1CB5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				295F01051FE69095009AF119 /* Search.xcdatamodeld */,
 				29DC23011FD3E246002F1CB5 /* GoogleService-Info.plist */,
 				29C6E6671FB0E30200EA8E9E /* Info.plist */,
 			);
@@ -315,6 +318,7 @@
 				29C6E65C1FB0E30100EA8E9E /* AppDelegate.swift in Sources */,
 				29DC23081FD3E8B1002F1CB5 /* DetailViewController.swift in Sources */,
 				29DC230E1FD3E900002F1CB5 /* MainViewController.swift in Sources */,
+				295F01071FE69095009AF119 /* Search.xcdatamodeld in Sources */,
 				CEB898131FD7E3E800F1B91B /* EditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,6 +506,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		295F01051FE69095009AF119 /* Search.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				295F01061FE69095009AF119 /* Model.xcdatamodel */,
+			);
+			currentVersion = 295F01061FE69095009AF119 /* Model.xcdatamodel */;
+			path = Search.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 29C6E6501FB0E30100EA8E9E /* Project object */;
 }

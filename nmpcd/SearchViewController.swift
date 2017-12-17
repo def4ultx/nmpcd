@@ -13,13 +13,13 @@ import BarcodeScanner
 
 class SearchViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
-    var photos = ["1","2","3","4","5"]
     var screenSize: CGRect!
     var screenWidth: CGFloat!
     var screenHeight: CGFloat!
     
     var searchText: String!
     var databaseRef: DatabaseReference!
+    let storageRef = Storage.storage().reference()
     private var medData = [Medicine]()
     private var medDetail: Medicine!
     private let barcodeController = BarcodeScannerController()
@@ -86,9 +86,18 @@ class SearchViewController: UIViewController, UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnnotatedPhotoCell", for: indexPath) as! AnnotatedPhotoCell
-        cell.imageView.image = UIImage(named: photos[0])
         cell.medNameLabel.text = medData[indexPath.row].TradeName
         cell.medCaptionLabel.text = medData[indexPath.row].GenericName + " " + medData[indexPath.row].Strength + medData[indexPath.row].Unit
+        let reference = storageRef.child("images/" + medData[indexPath.row].key + ".jpg")
+        reference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                cell.imageView.image = UIImage(data: data!)
+                cell.imageView.contentMode = .scaleAspectFit
+            }
+        }
+        
         return cell
     }
     

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseStorage
 import ImageSlideshow
 
 class DetailViewController: UIViewController {
@@ -21,13 +23,13 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var adminTextView: UITextView!
     @IBOutlet weak var precautionTextView: UITextView!
     @IBOutlet weak var storageLabel: UILabel!
-    var medData: Medicine!
     
-    let localSource = [ImageSource(imageString: "nmpcd")!, ImageSource(imageString: "nmpcd")!]
+    let storageRef = Storage.storage().reference()
+    var medData: Medicine!
+    var imageSource:[ImageSource] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.setupSlideShow()
         self.tradeLabel.text = medData.TradeName
         self.genericLabel.text = medData.GenericName
         self.strengthLabel.text = medData.Strength
@@ -37,6 +39,19 @@ class DetailViewController: UIViewController {
         self.adminTextView.text = medData.Administration
         self.precautionTextView.text = medData.Precaution
         self.storageLabel.text = medData.Storage
+        
+        self.navigationItem.title = medData.TradeName
+        
+        let reference = storageRef.child("images/" + medData.key + ".jpg")
+        reference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if let error = error {
+                print(error.localizedDescription)
+                self.slideShow.isHidden = true
+            } else {
+                self.imageSource.append(ImageSource(image: UIImage(data: data!)!))
+                self.setupSlideShow()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,19 +68,14 @@ class DetailViewController: UIViewController {
     }
     
     func setupSlideShow() {
-        
         slideShow.backgroundColor = UIColor.white
         slideShow.slideshowInterval = 5.0
         slideShow.pageControlPosition = PageControlPosition.underScrollView
         slideShow.pageControl.currentPageIndicatorTintColor = UIColor.lightGray
         slideShow.pageControl.pageIndicatorTintColor = UIColor.black
         slideShow.contentScaleMode = UIViewContentMode.scaleAspectFit
-        
         slideShow.activityIndicator = DefaultActivityIndicator(style: .white, color: UIColor.red)
-//        slideShow.currentPageChanged = { page in
-//            print("current page:", page)
-//        }
-        slideShow.setImageInputs(localSource)
+        slideShow.setImageInputs(imageSource)
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.didTap))
         slideShow.addGestureRecognizer(recognizer)
     }

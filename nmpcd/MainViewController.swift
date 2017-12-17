@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import Firebase
 import FirebaseDatabase
 import BarcodeScanner
@@ -15,7 +16,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    private var recentSearch: [String] = []
+    private var recentSearch: [NSManagedObject] = []
     private let barcodeController = BarcodeScannerController()
     var medData: Medicine!
     var databaseRef: DatabaseReference!
@@ -28,12 +29,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.barcodeController.codeDelegate = self
         self.barcodeController.errorDelegate = self
         self.barcodeController.dismissalDelegate = self
-        
-//        let hambergerButton = UIButton(type: .system)
-//        hambergerButton.setImage(#imageLiteral(resourceName: "hamberger"), for: .normal)
-//        hambergerButton.addTarget(self, action: #selector(MainViewController.fbButtonPressed), for: UIControlEvents.touchUpInside)
-//        hambergerButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: hambergerButton)
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,19 +39,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         AppUtility.lockOrientation(.portrait)
-        
-        if let email = Auth.auth().currentUser?.email {
-            self.databaseRef.child("user-list")
-                .queryOrdered(byChild: "email")
-                .queryEqual(toValue: email)
-                .observeSingleEvent(of: .value, with: { (snapshot) in
-                    if snapshot.exists() {
-                        let childData = (snapshot.value as! NSDictionary).allValues[0] as! NSDictionary
-                        self.recentSearch = childData.value(forKey: "recent") as! [String]
-                    }
-                    self.tableView.reloadData()
-                })
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
         }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "RecentSearch")
+        do {
+            recentSearch = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        self.tableView.reloadData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -67,6 +60,20 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func clearRecentMethod(_ sender: Any) {
         self.recentSearch.removeAll()
         self.tableView.reloadData()
+        
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "RecentSearch")
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try managedContext.execute(batchDeleteRequest)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+        
     }
     
     @IBAction func accountMethod(_ sender: Any) {
@@ -80,7 +87,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func scanBarcodeMethod(_ sender: Any) {
         barcodeController.title = "Barcode Scanner"
         present(barcodeController, animated: true, completion: nil)
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,7 +95,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCell = tableView.dequeueReusableCell(withIdentifier: "recentCell", for: indexPath)
-        tableCell.textLabel?.text = recentSearch[indexPath.row]
+        tableCell.textLabel?.text = (recentSearch[indexPath.row]).value(forKeyPath: "search") as? String
         return tableCell
     }
     
@@ -111,18 +117,35 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let _ = searchBar.text {
-//            if let email = Auth.auth().currentUser?.email {
-//                recentSearch.append("searchBar.text")
-//                if let objectData = try? JSONSerialization.data(withJSONObject: self.recentSearch, options: JSONSerialization.WritingOptions(rawValue: 0)) {
-//                    let objectString = String(data: objectData, encoding: .utf8)
-//                    self.databaseRef.child("user-list")
-//                        .queryOrdered(byChild: "email")
-//                        .queryEqual(toValue: email)
-//                        .setValue(objectString, forKey: "recent")
-//                }
-//            }
+        if let text = searchBar.text {
+            self.saveSearchData(text: text)
             performSegue(withIdentifier: "searchSegue", sender: searchBar)
+        }
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        searchBar.setShowsCancelButton(false, animated: true)
+    }
+    
+    func saveSearchData(text: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "RecentSearch", in: managedContext)!
+        let search = NSManagedObject(entity: entity, insertInto: managedContext)
+        search.setValue(text, forKeyPath: "search")
+        do {
+            try managedContext.save()
+            recentSearch.append(search)//insert(search, at: 0)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
@@ -133,7 +156,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 searchText = self.searchBar.text
             } else if type(of: sender!) == UITableView.self {
                 let indexPath = self.tableView.indexPathForSelectedRow
-                searchText = recentSearch[indexPath!.row]
+                searchText = (recentSearch[indexPath!.row]).value(forKeyPath: "search") as? String
             }
             let destination = segue.destination as! SearchViewController
             destination.searchText = searchText
@@ -182,7 +205,6 @@ extension MainViewController: BarcodeScannerCodeDelegate, BarcodeScannerErrorDel
 
 struct AppUtility {
     static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
-
         if let delegate = UIApplication.shared.delegate as? AppDelegate {
             delegate.orientationLock = orientation
         }

@@ -13,7 +13,7 @@ import FirebaseDatabase
 
 class LoginViewController: UIViewController {
 
-    var handle: AuthStateDidChangeListenerHandle!
+//    var handle: AuthStateDidChangeListenerHandle!
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -81,6 +81,7 @@ class LoginViewController: UIViewController {
                 self.pushAlert(title: title, message: message, action: "OK", style: .cancel)
             })
         }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
