@@ -12,5 +12,6 @@ target 'nmpcd' do
     pod 'Firebase/Database'
     #pod 'GoogleSignIn'
     pod 'BarcodeScanner'
+    pod "BSImagePicker", "~> 2.4"
     use_frameworks!
 end

@@ -8,6 +8,8 @@
 
 import UIKit
 import BarcodeScanner
+import BSImagePicker
+import Photos
 
 class EditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UISearchBarDelegate{
 
@@ -55,19 +57,41 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
+        let allAssets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: nil)
+        var evenAssetIds = [String]()
         
+        allAssets.enumerateObjects({ (asset, idx, stop) -> Void in
+            if idx % 2 == 0 {
+                evenAssetIds.append(asset.localIdentifier)
+            }
+        })
+        
+        let evenAssets = PHAsset.fetchAssets(withLocalIdentifiers: evenAssetIds, options: nil)
+        
+        let vc = BSImagePickerViewController()
+        vc.defaultSelections = evenAssets
+
         let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
-        
+
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: {
             (action:UIAlertAction) in imagePickerController.sourceType = .camera
             self.present(imagePickerController, animated: true, completion: nil)
         }))
-        
+
         actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: {
-            (action:UIAlertAction) in imagePickerController.sourceType = .photoLibrary
-            self.present(imagePickerController, animated: true, completion: nil)
+            (action:UIAlertAction) in self.bs_presentImagePickerController(vc, animated: true,
+                                            select: { (asset: PHAsset) -> Void in
+                                                print("Selected: \(asset)")
+            }, deselect: { (asset: PHAsset) -> Void in
+                print("Deselected: \(asset)")
+            }, cancel: { (assets: [PHAsset]) -> Void in
+                print("Cancel: \(assets)")
+            }, finish: { (assets: [PHAsset]) -> Void in
+                print("Finish: \(assets)")
+            }, completion: nil)
         }))
-        
+       
+
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(actionSheet, animated: true, completion: nil)
         
@@ -77,7 +101,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             addImage.image = image
             addImage.isHidden = false
-            addPhotoButton.isHidden = true
+            addPhotoButton.isHidden = false
             
         }else {
             //Error message
