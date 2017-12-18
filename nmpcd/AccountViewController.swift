@@ -15,6 +15,9 @@ class AccountViewController: UIViewController ,UIImagePickerControllerDelegate, 
 
     var databaseRef: DatabaseReference!
     @IBOutlet weak var addPhotoButton: UIButton!
+    @IBAction func addPhotoMethod(_ sender: Any) {
+        chooseImage()
+    }
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var fullnameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -90,7 +93,7 @@ class AccountViewController: UIViewController ,UIImagePickerControllerDelegate, 
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            addPhotoButton.setBackgroundImage(image, for: UIControlState.normal)
+            addPhotoButton.setImage(image, for: UIControlState.normal)
             
             
         }else {

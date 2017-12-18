@@ -23,6 +23,7 @@
 		29DC23141FD465B2002F1CB5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC23131FD465B2002F1CB5 /* LoginViewController.swift */; };
 		29E349991FE70B42008BD78E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29E349981FE70B41008BD78E /* GoogleService-Info.plist */; };
 		3828F9064ABA4C23629CBC0C /* Pods_nmpcd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE2AC2A50357F451D495CFC /* Pods_nmpcd.framework */; };
+		653034211FE7A70C007BF91F /* RoundTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653034201FE7A70C007BF91F /* RoundTextView.swift */; };
 		654D6BB51FD6D4C600BB964F /* AnnotatedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654D6BB41FD6D4C600BB964F /* AnnotatedPhotoCell.swift */; };
 		CEB898131FD7E3E800F1B91B /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB898121FD7E3E800F1B91B /* EditViewController.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,7 @@
 		29DC23131FD465B2002F1CB5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		29E349981FE70B41008BD78E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5CE2AC2A50357F451D495CFC /* Pods_nmpcd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nmpcd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		653034201FE7A70C007BF91F /* RoundTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTextView.swift; sourceTree = "<group>"; };
 		654D6BB41FD6D4C600BB964F /* AnnotatedPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotatedPhotoCell.swift; sourceTree = "<group>"; };
 		9648A608DE60094E6BAC0168 /* Pods-nmpcd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nmpcd.release.xcconfig"; path = "Pods/Target Support Files/Pods-nmpcd/Pods-nmpcd.release.xcconfig"; sourceTree = "<group>"; };
 		C62AAD4B3794FA14EA0A06AF /* Pods-nmpcd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nmpcd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nmpcd/Pods-nmpcd.debug.xcconfig"; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				654D6BB41FD6D4C600BB964F /* AnnotatedPhotoCell.swift */,
 				291281DA1FD729D600C32E14 /* User.swift */,
 				29147AD51FD83FEC006AD974 /* DesignableUITextField.swift */,
+				653034201FE7A70C007BF91F /* RoundTextView.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 			files = (
 				294CC08C1FD6648E0051BD3D /* Medicine.swift in Sources */,
 				29DC23141FD465B2002F1CB5 /* LoginViewController.swift in Sources */,
+				653034211FE7A70C007BF91F /* RoundTextView.swift in Sources */,
 				29DC230C1FD3E8F5002F1CB5 /* SearchViewController.swift in Sources */,
 				654D6BB51FD6D4C600BB964F /* AnnotatedPhotoCell.swift in Sources */,
 				29DC23121FD465A7002F1CB5 /* AccountViewController.swift in Sources */,

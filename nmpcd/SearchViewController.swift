@@ -87,7 +87,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnnotatedPhotoCell", for: indexPath) as! AnnotatedPhotoCell
         cell.medNameLabel.text = medData[indexPath.row].TradeName
-        cell.medCaptionLabel.text = medData[indexPath.row].GenericName + " " + medData[indexPath.row].Strength + medData[indexPath.row].Unit
+        cell.medCaptionLabel.text = medData[indexPath.row].GenericName + " " + medData[indexPath.row].Strength + " " + medData[indexPath.row].Unit
         let reference = storageRef.child("images/" + medData[indexPath.row].key + ".jpg")
         reference.getData(maxSize: 1 * 1024 * 1024) { data, error in
             if let error = error {
