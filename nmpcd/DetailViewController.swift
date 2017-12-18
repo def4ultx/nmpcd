@@ -87,7 +87,9 @@ class DetailViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let destination = segue.destination as! EditViewController
-        destination.medData = self.medData
+        if let navigationController = segue.destination as? UINavigationController {
+            let destination = navigationController.topViewController as! EditViewController
+            destination.medData = self.medData
+        }
     }
 }

@@ -87,6 +87,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.databaseRef = Database.database().reference()
         self.addPhotoButton.titleLabel?.textAlignment = .center
         self.addPhotoButton.setTitle("add \n photo", for: UIControlState.normal)
         addImage.isHidden = true
@@ -124,10 +125,9 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBAction func uploadData(_ sender: Any) {
         var key: String
         if (medData?.key != nil) {
-            
             key = (medData?.key)!
         } else {
-            key = databaseRef.child("posts").childByAutoId().key
+            key = databaseRef.child("medicine-list").childByAutoId().key
         }
         let post = ["Administration": adminTextView.text!,
                 "BarcodeNo": barcodeField.text!,
@@ -140,7 +140,6 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 "TradeName": nameField.text!,
                 "LowerTradeName": (nameField.text)?.lowercased(),
                 "Unit": unitField.text!,
-                "Administration": adminTextView.text!,
                 "Uses": usesTextView.text!,
                 "key": key]
         let childUpdates = ["/medicine-list/\(key)": post]
