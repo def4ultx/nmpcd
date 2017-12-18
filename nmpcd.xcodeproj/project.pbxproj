@@ -16,12 +16,12 @@
 		29C6E6611FB0E30200EA8E9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C6E65F1FB0E30200EA8E9E /* Main.storyboard */; };
 		29C6E6631FB0E30200EA8E9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C6E6621FB0E30200EA8E9E /* Assets.xcassets */; };
 		29C6E6661FB0E30200EA8E9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C6E6641FB0E30200EA8E9E /* LaunchScreen.storyboard */; };
-		29DC23021FD3E246002F1CB5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29DC23011FD3E246002F1CB5 /* GoogleService-Info.plist */; };
 		29DC23081FD3E8B1002F1CB5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC23071FD3E8B1002F1CB5 /* DetailViewController.swift */; };
 		29DC230C1FD3E8F5002F1CB5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC230B1FD3E8F5002F1CB5 /* SearchViewController.swift */; };
 		29DC230E1FD3E900002F1CB5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC230D1FD3E900002F1CB5 /* MainViewController.swift */; };
 		29DC23121FD465A7002F1CB5 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC23111FD465A7002F1CB5 /* AccountViewController.swift */; };
 		29DC23141FD465B2002F1CB5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC23131FD465B2002F1CB5 /* LoginViewController.swift */; };
+		29E349991FE70B42008BD78E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29E349981FE70B41008BD78E /* GoogleService-Info.plist */; };
 		3828F9064ABA4C23629CBC0C /* Pods_nmpcd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE2AC2A50357F451D495CFC /* Pods_nmpcd.framework */; };
 		654D6BB51FD6D4C600BB964F /* AnnotatedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654D6BB41FD6D4C600BB964F /* AnnotatedPhotoCell.swift */; };
 		CEB898131FD7E3E800F1B91B /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB898121FD7E3E800F1B91B /* EditViewController.swift */; };
@@ -39,12 +39,12 @@
 		29C6E6621FB0E30200EA8E9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29C6E6651FB0E30200EA8E9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29C6E6671FB0E30200EA8E9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		29DC23011FD3E246002F1CB5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		29DC23071FD3E8B1002F1CB5 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		29DC230B1FD3E8F5002F1CB5 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		29DC230D1FD3E900002F1CB5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		29DC23111FD465A7002F1CB5 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		29DC23131FD465B2002F1CB5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		29E349981FE70B41008BD78E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5CE2AC2A50357F451D495CFC /* Pods_nmpcd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nmpcd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		654D6BB41FD6D4C600BB964F /* AnnotatedPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotatedPhotoCell.swift; sourceTree = "<group>"; };
 		9648A608DE60094E6BAC0168 /* Pods-nmpcd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nmpcd.release.xcconfig"; path = "Pods/Target Support Files/Pods-nmpcd/Pods-nmpcd.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,8 +132,8 @@
 		29DC23031FD3E2E1002F1CB5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				29E349981FE70B41008BD78E /* GoogleService-Info.plist */,
 				295F01051FE69095009AF119 /* Search.xcdatamodeld */,
-				29DC23011FD3E246002F1CB5 /* GoogleService-Info.plist */,
 				29C6E6671FB0E30200EA8E9E /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -227,9 +227,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				29C6E6661FB0E30200EA8E9E /* LaunchScreen.storyboard in Resources */,
+				29E349991FE70B42008BD78E /* GoogleService-Info.plist in Resources */,
 				29C6E6631FB0E30200EA8E9E /* Assets.xcassets in Resources */,
 				29C6E6611FB0E30200EA8E9E /* Main.storyboard in Resources */,
-				29DC23021FD3E246002F1CB5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

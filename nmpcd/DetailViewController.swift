@@ -39,7 +39,6 @@ class DetailViewController: UIViewController {
         self.adminLabel.text = medData.Administration
         self.precautionLabel.text = medData.Precaution
         self.storageLabel.text = medData.Storage
-        
         self.navigationItem.title = medData.TradeName
         
         let reference = storageRef.child("images/" + medData.key + ".jpg")
@@ -84,5 +83,11 @@ class DetailViewController: UIViewController {
         let fullScreenController = slideShow.presentFullScreenController(from: self)
         // set the activity indicator for full screen controller (skipping the line will show no activity indicator)
         fullScreenController.slideshow.activityIndicator = DefaultActivityIndicator(style: .white, color: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let destination = segue.destination as! EditViewController
+        destination.medData = self.medData
     }
 }

@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseStorage
+import FirebaseDatabase
 import BarcodeScanner
 
 class EditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UISearchBarDelegate{
@@ -26,18 +29,12 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var storageTextView: UITextView!
     @IBOutlet weak var barcodeField: UITextField!
     
-    var editTradeName = ""
-    var editStrength = ""
-    var editUses = ""
-    var editUnit = ""
-    var editStorage = ""
-    var editDosageForm = ""
-    var editPrecaution = ""
-    var editAdministration = ""
-    var editBarcodeNo = ""
-    var editGenericName = ""
     private let barcodeController = BarcodeScannerController()
     
+    
+    var databaseRef: DatabaseReference!
+    let storageRef = Storage.storage().reference()
+    var medData: Medicine?
     
     @IBAction func cancelMethod(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -89,12 +86,6 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
-//            if user != nil {
-//                self.performSegue(withIdentifier: self.loginToList, sender: nil)
-//            }
-//        }
 
         self.addPhotoButton.titleLabel?.textAlignment = .center
         self.addPhotoButton.setTitle("add \n photo", for: UIControlState.normal)
@@ -106,6 +97,22 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         
         // Do any additional setup after loading the view.
+        
+        if ((self.medData) != nil) {
+            self.navigationItem.title = "Edit"
+            nameField.text = medData?.TradeName
+            genericField.text = medData?.GenericName
+            strengeField.text = medData?.Strength
+            unitField.text = medData?.Unit
+            dosageField.text = medData?.DosageForm
+            usesTextView.text = medData?.Uses
+            adminTextView.text = medData?.Administration
+            precautionView.text = medData?.Precaution
+            storageTextView.text = medData?.Storage
+            barcodeField.text = medData?.BarcodeNo
+        } else {
+            self.navigationItem.title = "Add"
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -113,16 +120,38 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func uploadData(_ sender: Any) {
+        var key: String
+        if (medData?.key != nil) {
+            
+            key = (medData?.key)!
+        } else {
+            key = databaseRef.child("posts").childByAutoId().key
+        }
+        let post = ["Administration": adminTextView.text!,
+                "BarcodeNo": barcodeField.text!,
+                "DosageForm": dosageField.text!,
+                "GenericName": genericField.text!,
+                "LowerGenericName": (genericField.text)?.lowercased(),
+                "Precaution": precautionView.text!,
+                "Strength": strengeField.text!,
+                "Storage": storageTextView.text!,
+                "TradeName": nameField.text!,
+                "LowerTradeName": (nameField.text)?.lowercased(),
+                "Unit": unitField.text!,
+                "Administration": adminTextView.text!,
+                "Uses": usesTextView.text!,
+                "key": key]
+        let childUpdates = ["/medicine-list/\(key)": post]
+        databaseRef.updateChildValues(childUpdates)
+        let imageRef = storageRef.child("images/" + key + ".jpg")
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        var data = Data()
+        data = UIImageJPEGRepresentation(addImage.image!, 0.8)!
+        imageRef.putData(data, metadata: metadata)
     }
-    */
-
 }
 
 extension EditViewController: BarcodeScannerDismissalDelegate {

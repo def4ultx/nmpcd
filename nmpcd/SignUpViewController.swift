@@ -52,7 +52,7 @@ class SignUpViewController: UIViewController {
                                 "age": "24",
                                 "email": self.emailField.text!,
                                 "gender": self.genderField.text!,
-                                "birhtday": self.bdayField.text!]
+                                "birthday": self.bdayField.text!]
                     let childUpdates = ["/user-list/\(key)": post]
                     self.databaseRef.updateChildValues(childUpdates)
                     let alertController = UIAlertController(title: "Success", message: "Create account successful!", preferredStyle: .alert)

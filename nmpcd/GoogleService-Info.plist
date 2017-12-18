@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>818195094267-96d03e1ld160mnf6itqukg2vi06709fl.apps.googleusercontent.com</string>
+	<string>131718583814-or3ccg0o0o11fg3e01br1t57t67bjoat.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.818195094267-96d03e1ld160mnf6itqukg2vi06709fl</string>
+	<string>com.googleusercontent.apps.131718583814-or3ccg0o0o11fg3e01br1t57t67bjoat</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAv7WM57WB8HblxMIf5zkmpxoUPUELJA60</string>
+	<string>AIzaSyBWA1MZqZxhetXSuOHPHdJtePYS-rZBkJg</string>
 	<key>GCM_SENDER_ID</key>
-	<string>818195094267</string>
+	<string>131718583814</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.egco428.nmpcd</string>
 	<key>PROJECT_ID</key>
-	<string>nmpcd-2cb34</string>
+	<string>nmpcd-ddaf8</string>
 	<key>STORAGE_BUCKET</key>
-	<string>nmpcd-2cb34.appspot.com</string>
+	<string>nmpcd-ddaf8.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:818195094267:ios:a6a9d15c728eb573</string>
+	<string>1:131718583814:ios:a6a9d15c728eb573</string>
 	<key>DATABASE_URL</key>
-	<string>https://nmpcd-2cb34.firebaseio.com</string>
+	<string>https://nmpcd-ddaf8.firebaseio.com</string>
 </dict>
 </plist>
